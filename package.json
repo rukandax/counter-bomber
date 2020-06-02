@@ -1,0 +1,19 @@
+{
+  "name": "counter-bomber",
+  "version": "1.0.0",
+  "description": "Counter Bomber Game",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "author": "Rukanda Faridsi <hey@rukanda.xyz>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "express": "^4.17.1",
+    "ws": "^7.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
