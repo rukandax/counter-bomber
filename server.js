@@ -158,11 +158,11 @@ wss.on("connection", (ws) => {
       broadcast(ws.room, payload);
     }
 
-    if (message.explode) {
+    if (message.punch) {
       ws.decreamentValue += 1;
 
       let users = [];
-      let explodeCount = 0;
+      let punchCount = 0;
 
       wss.clients.forEach((client) => {
         if (client.room === ws.room) {
@@ -173,14 +173,14 @@ wss.on("connection", (ws) => {
             lose: client.lose,
           });
 
-          explodeCount += client.decreamentValue;
+          punchCount += client.decreamentValue;
         }
       });
 
       const payload = {
         code: 20003,
         users: users,
-        explodeCount,
+        punchCount,
       };
 
       broadcast(ws.room, payload);
@@ -233,7 +233,7 @@ wss.on("connection", (ws) => {
         users,
         index: 0,
         bombCount,
-        explodeCount: 0,
+        punchCount: 0,
       };
 
       broadcast(ws.room, payload);
