@@ -201,16 +201,21 @@ wss.on("connection", (ws) => {
 
       wss.clients.forEach((client) => {
         if (client.room === ws.room) {
-          client.increamentValue = randomIncreamentValue();
-          client.decreamentValue = 0;
-          client.isReady = false;
-
           let lose = client.lose;
 
           if (client.username === ws.username) {
             lose = message.lose;
             ws.lose = lose;
           }
+
+          if (!client.lose) {
+            client.increamentValue = randomIncreamentValue();
+          } else {
+            client.increamentValue = 0;
+          }
+
+          client.decreamentValue = 0;
+          client.isReady = false;
 
           users.push({
             username: client.username,
