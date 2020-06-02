@@ -5,4 +5,7 @@ manual_scaling:
   instances: 1
 
 network:
+  forwarded_ports:
+  - 6969
+  instance_tag: websocket
   session_affinity: true
