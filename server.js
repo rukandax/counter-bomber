@@ -5,7 +5,7 @@ const express = require("express");
 const app = express();
 
 const sockerServer = http.createServer(app);
-const socketPort = 6969;
+const socketPort = process.env.PORT || 6969;
 
 sockerServer.listen(socketPort, function () {
   console.log("Web server start. http://localhost:" + socketPort);
