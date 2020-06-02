@@ -42,16 +42,20 @@ wss.on("connection", (ws) => {
 
       let userExist = false;
       let someoneLose = false;
+
+      let userCount = 0;
       let readyCount = 0;
 
       wss.clients.forEach((client) => {
         if (client.room === room) {
+          userCount += 1;
+
           if (client.lose) {
             someoneLose = true;
           }
 
           if (client.isReady) {
-            readyCount += 1
+            readyCount += 1;
           }
 
           if (client.username === username) {
@@ -60,7 +64,7 @@ wss.on("connection", (ws) => {
         }
       });
 
-      if (readyCount === wss.clients.filter(val => val.room === room).length || someoneLose) {
+      if ((userCount > 0 && readyCount === userCount) || someoneLose) {
         const payload = {
           code: 10002,
           message: "Room already start playing",
